@@ -3,8 +3,23 @@
 <%= render @post %>
 
 <div>
-  <%= link_to "Edit this post", edit_post_path(@post) %> |
+  <%= link_to "Edit this post", edit_post_path(@post) %>
   <%= link_to "Back to posts", posts_path %>
 
   <%= button_to "Destroy this post", @post, method: :delete %>
 </div>
+
+<h2>コメントを書く</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>　<!-- form_forはformタグ -->
+  <div>
+    <%= f.label :user %><br>  <!-- フォームのラベルにuserを入れる -->
+    <%= f.text_field :user %>　<!-- フォームのテキストにuserを入れる -->
+  </div>
+  <div>
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
